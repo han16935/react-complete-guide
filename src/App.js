@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import Expense from "./Components/Expense/Expense";
+import NewExpense from "./Components/NewExpense/NewExpense";
 import "./App.css";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         >
           Learn React
         </a>
+        <NewExpense />
         <Expense expenses={expenses} />
       </header>
     </div>
