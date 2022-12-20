@@ -26,6 +26,10 @@ function App() {
       date: new Date(2021, 5, 12),
     },
   ];
+
+  const addExpenses = (data) => {
+    console.log(data);
+  };
   return (
     <div className="App">
       <header className="App-header">
@@ -41,7 +45,8 @@ function App() {
         >
           Learn React
         </a>
-        <NewExpense />
+
+        <NewExpense addExpenses={addExpenses} />
         <Expense expenses={expenses} />
       </header>
     </div>
