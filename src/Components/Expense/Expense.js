@@ -8,12 +8,15 @@ function Expense({ expenses }) {
   const [filteredYear, setFilteredYear] = useState("2020");
 
   const yearToExpense = (year) => {
+    // select로 고른 year을 바꿈
     setFilteredYear(year);
   };
 
-  const expenseItems = expenses.map((v, i) => (
-    <ExpenseItem date={v.date} amount={v.amount} title={v.title} />
-  ));
+  const expenseItems = expenses
+    .filter((v, i) => v.date.getFullYear().toString() === filteredYear)
+    .map((v, i) => (
+      <ExpenseItem key={v.id} date={v.date} amount={v.amount} title={v.title} />
+    ));
 
   return (
     <Card className="expense">
@@ -21,14 +24,7 @@ function Expense({ expenses }) {
         filteredYear={filteredYear}
         yearToExpense={yearToExpense}
       />
-      {expenses.map((v, i) => (
-        <ExpenseItem
-          key={v.id}
-          date={v.date}
-          amount={v.amount}
-          title={v.title}
-        />
-      ))}
+      {expenseItems}
     </Card>
   );
 }
