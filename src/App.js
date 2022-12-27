@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import Expense from "./Components/Expense/Expense";
 import NewExpense from "./Components/NewExpense/NewExpense";
 import "./App.css";
 
 function App() {
-  const expenses = [
+  const initialExpenses = [
     {
       id: "e1",
       title: "Toilet Paper",
@@ -27,9 +27,13 @@ function App() {
     },
   ];
 
-  const addExpenses = (data) => {
-    console.log(data);
+  const [expenses, changeExpenses] = useState(initialExpenses);
+  const addExpenseHandler = (data) => {
+    changeExpenses((prevExpenses) => {
+      return [data, ...prevExpenses];
+    });
   };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -46,7 +50,7 @@ function App() {
           Learn React
         </a>
 
-        <NewExpense addExpenses={addExpenses} />
+        <NewExpense addExpenses={addExpenseHandler} />
         <Expense expenses={expenses} />
       </header>
     </div>
