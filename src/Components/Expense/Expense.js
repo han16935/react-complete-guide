@@ -15,9 +15,14 @@ function Expense({ expenses }) {
   const filteredYears = expenses.filter(
     (v, i) => v.date.getFullYear().toString() === filteredYear
   );
-  const expenseItems = filteredYears.map((v, i) => (
-    <ExpenseItem key={v.id} date={v.date} amount={v.amount} title={v.title} />
-  ));
+
+  let expenseItems = <p>No Expenses found.</p>;
+
+  if (filteredYears.length > 0) {
+    expenseItems = filteredYears.map((v, i) => (
+      <ExpenseItem key={v.id} date={v.date} amount={v.amount} title={v.title} />
+    ));
+  }
 
   return (
     <Card className="expense">
