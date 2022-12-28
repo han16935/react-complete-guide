@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ExpenseForm from "./ExpenseForm";
 import "./NewExpense.css";
 
@@ -10,9 +10,24 @@ const NewExpense = ({ addExpenses }) => {
     };
     addExpenses(newData);
   };
+
+  const [count, setCount] = useState(false);
+  const changeCountHandler = () => {
+    count === false ? setCount(true) : setCount(false);
+  };
   return (
     <div className="new-expense">
-      <ExpenseForm expenseDatatoNew={expenseDataToApp} />
+      {count && <ExpenseForm expenseDatatoNew={expenseDataToApp} />}
+      {!count && (
+        <button type="button" onClick={changeCountHandler}>
+          Add New Expense
+        </button>
+      )}
+      {count && (
+        <button type="button" onClick={changeCountHandler}>
+          Cancel
+        </button>
+      )}
     </div>
   );
 };
